@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Create a New Figure!</title>
+  </head>
+  <body>
+    <form action="/figures" method="post">
+      <label>Name</label><input type="text" name="figure[name]" id="figure_name">
+      <% Title.all.each do |title| %>
+        <p><label><%= title.name %></label> <input type="checkbox" name="figure[title_ids][][<%= title.id %>]" id="<%= 'title_' + title.id.to_s%>"></p>
+      <% end %>
+      <p><label>New Title</label><input type="text" name="figure[title][name]" id="new_title"></p>
+      <% Landmark.all.each do |landmark| %>
+        <p><label><%= landmark.name %></label> <input type="checkbox" name="figure[landmark_ids][][<%= landmark.id %>]" id="<%= 'landmark_' + landmark.id.to_s%>"></p>
+      <% end %>
+      <p><label>New Landmark Name:</label><input type="text" name="figure[landmark][name]" id="new_landmark"></p>
+      <p><label>New Landmark Year Completed:</label><input type="text" name="figure[landmark][year_completed]"></p>
+      <input type="submit" name="Create New Figure" id="Create New Figure">
+
+    </form>
+
+    <h4>Rspec wants this for some reason... soo landmark[name] title[name]</h4>
+  </body>
+</html>
